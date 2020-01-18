@@ -13,6 +13,19 @@
       },
       "success": ""
     },
+    "addemote": {
+      "errors": {
+        "full": "",
+        "name": "",
+        "url": ""
+      },
+      "self": {
+        "description": "",
+        "examples": "",
+        "usage": ""
+      },
+      "success": ""
+    },
     "afk": {
       "deleted": "",
       "member": ""

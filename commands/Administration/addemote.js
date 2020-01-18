@@ -6,9 +6,9 @@ class Addemote extends Command {
     constructor (client) {
         super(client, {
             name: "addemote",
-            description: (language) => language.get("ADDEMOTE_DESCRIPTION"),
-            usage: (language) => language.get("ADDEMOTE_USAGE"),
-            examples: (language) => language.get("ADDEMOTE_EXAMPLES"),
+            description: (language) => language.t("cmd.addemote.usage"),
+            usage: (language) => language.t("cmd.addemote.usage"),
+            examples: (language) => language.t("cmd.addemote.examples"),
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
@@ -25,18 +25,21 @@ class Addemote extends Command {
 
         let url = args[0];
         if(!url){
-            return message.channel.send(message.language.get("ADDEMOTE_ERR_URL"));
+            return message.channel.send(message.language.t("cmd.addemote.url"));
         }
 
         let name = args[1];
         if(!name){
-            return message.channel.send(message.language.get("ADDEMOTE_ERR_NAME"));
+            return message.channel.send(message.language.t("cmd.addemote.name"));
         }
 
         message.guild.emojis.create(url, name).then((emote) => {
-            message.channel.send(message.language.get("ADDEMOTE_SUCCESS", emote));
+            message.channel.send(message.language.t("cmd.addemote.success", {
+                emoteName: emote.name,
+                emoteString: emote.toString()
+            }));
         }).catch((err) => {
-            return message.channel.send(message.language.get("ADDEMOTE_ERROR"));
+            return message.channel.send(message.language.t("cmd.addemote.full"));
         });
     }
 

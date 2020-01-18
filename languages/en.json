@@ -16,6 +16,19 @@
       },
       "success": "{{ success }} | The command {{{ cmd }}} has been added to the server!"
     },
+    "addemote": {
+      "errors": {
+        "full": "{{ error }} | The URL to the image is invalid or you have no more space on your Discord!",
+        "name": "{{ error }} | Please indicate the name of the emoji!",
+        "url": "{{ error }} | Please indicate the url of the emoji!"
+      },
+      "self": {
+        "description": "Add an emoji to the server!",
+        "examples": "$addemote https://an-image-of.com/butterfly.png butterfly",
+        "usage": "addemote [URL] [name]"
+      },
+      "success": "{{ success }} | Emoji {{{ emoteName }}} added to the server! String: `{{{ emoteString }}}`"
+    },
     "afk": {
       "deleted": "{{ e.warn }} | Your AFK has just been deleted!",
       "member": "{{ warn}} | **{{{ member }}}** is currently AFK for:\\n ```{{{ reason }}}```"
