@@ -31,6 +31,17 @@
       "member": ""
     },
     "automod": {
+      "disabled": "",
+      "disabledChannel": "",
+      "enabled": "",
+      "errors": {
+        "status": ""
+      },
+      "self": {
+        "description": "",
+        "examples": "",
+        "usage": ""
+      },
       "warn": ""
     },
     "errors": {

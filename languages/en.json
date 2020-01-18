@@ -34,6 +34,17 @@
       "member": "{{ warn}} | **{{{ member }}}** is currently AFK for:\\n ```{{{ reason }}}```"
     },
     "automod": {
+      "disabled": "{{ success }} | All right! Auto moderation is no longer effective on this server!",
+      "disabledChannel": "{{ success }} | Automoderation will no longer be performed in {{{ channel }}}!",
+      "enabled": "{{ success }} | Discord invitations will be automatically deleted! If you want to ignore a channel, just type `{{{ prefix }}}automod off #channel` ! This will disable auto moderation in the mentioned channel!",
+      "errors": {
+        "status": "{{ error }} | Please enter a valid status! (`on` ou `off`)!"
+      },
+      "self": {
+        "description": "Enables or disables automatic deletion of discord invitations",
+        "examples": "$automod on\\n$automod off #general\\n$automod off",
+        "usage": "automod [on/off] (#channel)"
+      },
       "warn": "{{{ author }}} | Your message contained a Discord invitation, so it has been deleted. If it was unintentional, you can edit your message again, it was sent to you as a private message!"
     },
     "errors": {
