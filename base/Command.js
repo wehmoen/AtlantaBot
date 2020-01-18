@@ -3,9 +3,9 @@ const path = require("path");
 module.exports = class Command {
     constructor(client, {
       name = null,
-      description = (language) => language.get("NO_DESCRIPTION_PROVIDED"),
-      usage = (language) => language.get("NO_USAGE_PROVIDED"),
-      examples = (language) => language.get("NO_EXAMPLE_PROVIDED"),
+      description = (language) => language.t("NO_DESCRIPTION_PROVIDED"),
+      usage = (language) => language.t("NO_USAGE_PROVIDED"),
+      examples = (language) => language.t("NO_EXAMPLE_PROVIDED"),
       dirname = false,
       enabled = true,
       guildOnly = false,

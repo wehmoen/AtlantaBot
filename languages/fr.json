@@ -1,0 +1,40 @@
+{
+  "cmd": {
+    "addcommand": {
+      "errors": {
+        "answer": "",
+        "exists": "",
+        "name": ""
+      },
+      "self": {
+        "description": "",
+        "examples": "",
+        "usage": ""
+      },
+      "success": ""
+    },
+    "afk": {
+      "deleted": "",
+      "member": ""
+    },
+    "automod": {
+      "warn": ""
+    },
+    "errors": {
+      "botPerms": "",
+      "channel": "",
+      "disabled": "",
+      "everyone": "",
+      "guild_only": "",
+      "memberPerms": "",
+      "nsfw": "",
+      "owner": "",
+      "ratelimit": "",
+      "unknown": ""
+    },
+    "slowmode": {
+      "wait": ""
+    },
+    "utils": {}
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "bot": {
+    "prefix": "the prefix of this server is `{{{ prefix }}}`"
+  },
+  "cmd": {
+    "addcommand": {
+      "errors": {
+        "answer": "{{ error }} | Please enter an answer to this command!",
+        "exists": "{{ error }} | The command {{{ name }}} already exists!",
+        "name": "{{ error }} | Please enter a name and an answer to the command!"
+      },
+      "self": {
+        "description": "Add a custom command to the server!",
+        "examples": "$addcommand hey hi!",
+        "usage": "addcommand [name] [answer]"
+      },
+      "success": "{{ success }} | The command {{{ cmd }}} has been added to the server!"
+    },
+    "afk": {
+      "deleted": "{{ e.warn }} | Your AFK has just been deleted!",
+      "member": "{{ warn}} | **{{{ member }}}** is currently AFK for:\\n ```{{{ reason }}}```"
+    },
+    "automod": {
+      "warn": "{{{ author }}} | Your message contained a Discord invitation, so it has been deleted. If it was unintentional, you can edit your message again, it was sent to you as a private message!"
+    },
+    "errors": {
+      "botPerms": "{{ error }} | I need the following permissions to perform this command: `{{{ perms }}}`",
+      "channel": "{{ error }} | Commands aren't allowed in {{{ channel }}}!",
+      "disabled": "{{ error }} | This command is currently disabled!",
+      "everyone": "{{ error }} | You are not allowed to mention everyone or here in the commands.",
+      "guild_only": "{{ error }} | This command is only available on a server!",
+      "memberPerms": "{{ error }} | You do not have the necessary permissions to perform this command (`{{{ perm }}}`)",
+      "nsfw": "{{ error }} | You must run this command in a channel that allows NSFW content!",
+      "owner": "{{ error }} | Only {{{ owner }}} can run this command!",
+      "ratelimit": "{{ error }} | You must wait **{{{ seconds }}}** second(s) to be able to run this command again!",
+      "unknown": "{{ error }} | An error has occurred, please try again in a few minutes."
+    },
+    "slowmode": {
+      "wait": "{{ error }} | The channel {{{ channel }}} is in slowmode! Please wait {{{ delay }}} to be able to post a new message!"
+    },
+    "utils": {
+      "guildOnly": "{{ error }} | This command is only available on a server!"
+    }
+  }
+}

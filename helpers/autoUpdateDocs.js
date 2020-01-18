@@ -8,7 +8,7 @@ module.exports = {
      */
     update(client){
         let table = require("markdown-table");
-        let language = new(require("../languages/"+client.config.defaultLanguage+".js"));
+        let language = new client.i18nManager(client.config.defaultLanguage);
         let commands = client.commands;
         let categories = [];
         commands.forEach((cmd) => {

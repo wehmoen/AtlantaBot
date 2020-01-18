@@ -41,12 +41,14 @@ module.exports = class {
         }
 
         // Gets language
-        let language = new(require(`../languages/${data.guild ? data.guild.language : this.client.config.defaultLanguage}.js`));
+        let language = new this.client.i18nManager(data.guild.language);
         message.language = language;
 
         // Check if the bot was mentionned
         if(message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))){
-            return message.reply(language.get("PREFIX_INFO", data.guild.prefix || ""));
+            return message.reply(language.t("bot.prefix", {
+                prefix: data.guild.prefix
+            }));
         }
 
         if(message.content === "@someone" && message.guild){
@@ -74,7 +76,10 @@ module.exports = class {
                         if(uSlowmode.time > Date.now()){
                             message.delete();
                             let delay = message.language.convertMs(Math.ceil((uSlowmode.time - Date.now())));
-                            return message.author.send(message.language.get("SLOWMODE_PLEASE_WAIT", delay, message.channel));
+                            return message.author.send(message.language.t("cmd.slowmode.wait", {
+                                delay,
+                                channel: message.channel
+                            }));
                         } else {
                             uSlowmode.time = channelSlowmode.time+Date.now();
                         }
@@ -94,7 +99,9 @@ module.exports = class {
                     if(!message.channel.permissionsFor(message.member).has("MANAGE_MESSAGES")){
                         message.delete();
                         message.author.send("```"+message.content+"```");
-                        return message.channel.send(message.language.get("AUTOMOD_MSG", message));
+                        return message.channel.send(message.language.t("cmd.automod.warn", {
+                            author: message.author
+                        }));
                     }
                 }
             }
@@ -103,13 +110,16 @@ module.exports = class {
             if(afkReason){
                 data.userData.afk = null;
                 await data.userData.save();
-                message.channel.send(message.language.get("AFK_DELETED", message.author));
+                message.channel.send(message.language.t("cmd.afk.deleted"));
             }
 
             message.mentions.users.forEach(async (u) => {
                 let userData = await client.findOrCreateUser({ id: u.id });
                 if(userData.afk){
-                    message.channel.send(message.language.get("AFK_MEMBER", u, userData.afk));
+                    message.channel.send(message.language.get("cmd.afk.member", {
+                        member: u.tag,
+                        reason: userData.afk
+                    }));
                 }
             });
 
@@ -136,7 +146,7 @@ module.exports = class {
         }
 
         if(cmd.conf.guildOnly && !message.guild){
-            return message.channel.send(language.get("ERR_GUILDONLY"));
+            return message.channel.send(language.t("cmd.errors.guildOnly"));
         }
 
         if(message.guild){
@@ -150,7 +160,9 @@ module.exports = class {
                 }
             });
             if(neededPermission.length > 0){
-                return message.channel.send(language.get("ERR_MISSING_BOT_PERMS", neededPermission.map((p) => `\`${p}\``).join(", ")));
+                return message.channel.send(language.t("cmd.errors.botPerms", {
+                    perms: neededPermission.map((p) => `\`${p}\``).join(", ")
+                }));
             }
             neededPermission = [];
             cmd.conf.memberPermissions.forEach((perm) => {
@@ -159,32 +171,32 @@ module.exports = class {
                 }
             });
             if(neededPermission.length > 0){
-                return message.channel.send(language.get("ERR_MISSING_MEMBER_PERMS", neededPermission.map((p) => `\`${p}\``).join(", ")));
+                return message.channel.send(language.t("cmd.errors.memberPerms", {
+                    perms: neededPermission.map((p) => `\`${p}\``).join(", ")
+                }));
             }
             if(data.guild.ignoredChannels.includes(message.channel.id) && !message.member.hasPermission("MANAGE_MESSAGES")){
-                return (message.delete()) && (message.author.send(language.get("ERR_UNAUTHORIZED_CHANNEL", (message.channel))));
-            }
-    
-            if(cmd.conf.permission){
-                if(!message.member.hasPermission(cmd.conf.permission)){
-                    return message.channel.send(message.language.get("INHIBITOR_PERMISSIONS", cmd.conf.permission));
-                }
+                return (message.delete()) && (message.author.send(language.get("cmd.errors.channel", {
+                    channel: message.channel
+                })));
             }
 
             if(!message.channel.permissionsFor(message.member).has("MENTION_EVERYONE") && (message.content.includes("@everyone") || message.content.includes("@here"))){
-                return message.channel.send(language.get("ERR_EVERYONE"));
+                return message.channel.send(language.t("cmd.errors.everyone"));
             }
             if(!message.channel.nsfw && cmd.conf.nsfw){
-                return message.channel.send(language.get("ERR_NOT_NSFW"));
+                return message.channel.send(language.t("cmd.errors.nsfw"));
             }
         }
 
         if(!cmd.conf.enabled){
-            return message.channel.send(language.get("ERR_COMMAND_DISABLED"));
+            return message.channel.send(language.t("cmd.errors.disabled"));
         }
 
         if(cmd.conf.ownerOnly && message.author.id !== client.config.owner.id){
-            return message.channel.send(language.get("ERR_OWNER_ONLY"));
+            return message.channel.send(language.t("cmd.errors.owner", {
+                owner: client.users.get(client.config.owner.id).tag
+            }));
         }
 
         let uCooldown = cmdCooldown[message.author.id];
@@ -194,7 +206,9 @@ module.exports = class {
         }
         let time = uCooldown[cmd.help.name] || 0;
         if(time && (time > Date.now())){
-            return message.channel.send(language.get("ERR_CMD_COOLDOWN", Math.ceil((time-Date.now())/1000)));
+            return message.channel.send(language.t("cmd.errors.ratelimit", {
+                seconds: Math.ceil((time-Date.now())/1000)
+            }));
         }
         cmdCooldown[message.author.id][cmd.help.name] = Date.now() + cmd.conf.cooldown;
 
@@ -227,7 +241,7 @@ module.exports = class {
             }
         } catch(e){
             console.error(e);
-            return message.channel.send(message.language.get("ERR_OCCURENCED"));
+            return message.channel.send(message.language.t("cmd.errors.unknown"));
         }
     }
 };

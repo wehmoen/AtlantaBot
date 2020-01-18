@@ -19,6 +19,7 @@ class Atlanta extends Client {
         this.logs = require("../base/Log"); // Log mongoose model
         this.dashboard = require("../dashboard/app"); // Dashboard app
         this.queues = new Collection(); // This collection will be used for the music
+        this.i18nManager = require("../helpers/i18nManager"); // The i18nManager class
     }
 
     // This function is used to load a command and add it to the collection
