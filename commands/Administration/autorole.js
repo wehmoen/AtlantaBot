@@ -6,9 +6,9 @@ class Autorole extends Command {
     constructor (client) {
         super(client, {
             name: "autorole",
-            description: (language) => language.get("AUTOROLE_DESCRIPTION"),
-            usage: (language) => language.get("AUTOROLE_USAGE"),
-            examples: (language) => language.get("AUTOROLE_EXAMPLES"),
+            description: (language) => language.t("cmd.autorole.self.description"),
+            usage: (language) => language.t("cmd.autorole.self.usage"),
+            examples: (language) => language.t("cmd.autorole.self.examples"),
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
@@ -25,7 +25,7 @@ class Autorole extends Command {
 
         let status = args[0];
         if(status !== "on" && status !== "off"){
-            return message.channel.send(message.language.get("AUTOROLE_ERR_STATUS"));
+            return message.channel.send(message.language.t("cmd.autorole.errors.status"));
         }
         
         if(status === "on"){

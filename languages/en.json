@@ -47,6 +47,18 @@
       },
       "warn": "{{{ author }}} | Your message contained a Discord invitation, so it has been deleted. If it was unintentional, you can edit your message again, it was sent to you as a private message!"
     },
+    "autorole": {
+      "disabled": "{{ warn }} | Autorole correctly deactivated! To have more information about the configuration of your server type `{{{ prefix }}}configuration`!",
+      "enabled": "{{ success }} | Autorole correctly activated! To have more information about the configuration of your server type `{{{ prefix }}}configuration`!",
+      "errors": {
+        "status": "{{ error }} | Please indicate `on` or `off` and a role name!"
+      },
+      "self": {
+        "description": "Enable or disable the autorole on the server!",
+        "examples": "$autorole on Members\\n$autorole off",
+        "usage": "autorole [on/off] (role)"
+      }
+    },
     "errors": {
       "botPerms": "{{ error }} | I need the following permissions to perform this command: `{{{ perms }}}`",
       "channel": "{{ error }} | Commands aren't allowed in {{{ channel }}}!",
