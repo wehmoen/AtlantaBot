@@ -25,18 +25,18 @@ class Addcommand extends Command {
         
         let name = args[0].split("\n")[0];
         if(!name){
-            return message.channel.send(message.language.get("addcommand.errors.name"));
+            return message.channel.send(message.language.t("addcommand.errors.name"));
         }
 
         if(this.client.commands.get(name) || this.client.aliases.get(name) || data.guild.customCommands.find((c) => c.name === name)){
-            return message.channel.send(message.language.get("addcommand.errors.exists", {
+            return message.channel.send(message.language.t("addcommand.errors.exists", {
                 name
             }));
         }
 
         let answer = (args[0].split("\n")[1] || "") + args.slice(1).join(" ");
         if(!answer){
-            return message.channel.send(message.language.get("addcommand.errors.answer"));
+            return message.channel.send(message.language.t("addcommand.errors.answer"));
         }
         
         data.guild.customCommands.push({
@@ -45,7 +45,7 @@ class Addcommand extends Command {
         });
         data.guild.save();
         
-        message.channel.send(message.language.get("addcommand.success", {
+        message.channel.send(message.language.t("addcommand.success", {
             name
         }));
     }
