@@ -56,6 +56,31 @@
         "usage": ""
       }
     },
+    "backup": {
+      "confirmation": "",
+      "errors": {
+        "id": "",
+        "notFound": "",
+        "status": "",
+        "timeout": ""
+      },
+      "loaded": "",
+      "self": {
+        "description": "",
+        "examples": "",
+        "usage": ""
+      },
+      "start": "",
+      "success": "",
+      "successID": "",
+      "titles": {
+        "createdAt": "",
+        "id": "",
+        "info": "",
+        "server": "",
+        "size": ""
+      }
+    },
     "errors": {
       "botPerms": "",
       "channel": "",

@@ -59,6 +59,31 @@
         "usage": "autorole [on/off] (role)"
       }
     },
+    "backup": {
+      "confirmation": "{{ warn }} | When the backup is loaded, all the channels, roles, etc. will be replaced! Type `-confirm` to confirm!",
+      "errors": {
+        "id": "{{ error }} | Please enter a backup ID!",
+        "notFound": "{{ error }} | No backup found for `{{{ backupID }}}`",
+        "status": "{{ error }} | You must specify `create`, `load` or `infos`!",
+        "timeout": "{{ error }} | Time's up! Cancelled backup loading!"
+      },
+      "loaded": "{{ success }} | Backup successfully loaded!",
+      "self": {
+        "description": "Manage your server backups in an ergonomic and efficient way!",
+        "examples": "$backup create\\n$backup load 92N1x\\n$backup infos 92N1x",
+        "usage": "backup [create/load/infos]"
+      },
+      "start": "{{ success }} | Start loading the backup!",
+      "success": "{{ success }} | Successfully created backup! The backup ID has been sent to you in private messages!",
+      "successID": "{{ success }} | Here is the ID of your backup: ```{{{ backupID }}}```",
+      "titles": {
+        "createdAt": "",
+        "id": "ID",
+        "info": "Backup Informations",
+        "server": "Server ID",
+        "size": "Size"
+      }
+    },
     "errors": {
       "botPerms": "{{ error }} | I need the following permissions to perform this command: `{{{ perms }}}`",
       "channel": "{{ error }} | Commands aren't allowed in {{{ channel }}}!",
