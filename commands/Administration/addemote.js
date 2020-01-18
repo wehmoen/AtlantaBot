@@ -6,9 +6,9 @@ class Addemote extends Command {
     constructor (client) {
         super(client, {
             name: "addemote",
-            description: (language) => language.t("cmd.addemote.usage"),
-            usage: (language) => language.t("cmd.addemote.usage"),
-            examples: (language) => language.t("cmd.addemote.examples"),
+            description: (language) => language.t("cmd.addemote.self.description"),
+            usage: (language) => language.t("cmd.addemote.self.usage"),
+            examples: (language) => language.t("cmd.addemote.self.examples"),
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
