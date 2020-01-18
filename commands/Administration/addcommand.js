@@ -6,9 +6,9 @@ class Addcommand extends Command {
     constructor (client) {
         super(client, {
             name: "addcommand",
-            description: (language) => language.get("ADDCOMMAND_DESCRIPTION"),
-            usage: (language) => language.get("ADDCOMMAND_USAGE"),
-            examples: (language) => language.get("ADDCOMMAND_EXAMPLES"),
+            description: (language) => language.get("cmd.addcommand.self.description"),
+            usage: (language) => language.get("cmd.addcommand.self.usage"),
+            examples: (language) => language.get("cmd.addcommand.self.examples"),
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
@@ -25,16 +25,18 @@ class Addcommand extends Command {
         
         let name = args[0].split("\n")[0];
         if(!name){
-            return message.channel.send(message.language.get("ADDCOMMAND_ERR_NAME"));
+            return message.channel.send(message.language.get("addcommand.errors.name"));
         }
 
         if(this.client.commands.get(name) || this.client.aliases.get(name) || data.guild.customCommands.find((c) => c.name === name)){
-            return message.channel.send(message.language.get("ADDCOMMAND_ERR_EXISTS", name));
+            return message.channel.send(message.language.get("addcommand.errors.exists", {
+                name
+            }));
         }
 
         let answer = (args[0].split("\n")[1] || "") + args.slice(1).join(" ");
         if(!answer){
-            return message.channel.send(message.language.get("ADDCOMMAND_ERR_ANSWER"));
+            return message.channel.send(message.language.get("addcommand.errors.answer"));
         }
         
         data.guild.customCommands.push({
@@ -43,7 +45,9 @@ class Addcommand extends Command {
         });
         data.guild.save();
         
-        message.channel.send(message.language.get("ADDCOMMAND_SUCCESS", name));
+        message.channel.send(message.language.get("addcommand.success", {
+            name
+        }));
     }
     
 }
